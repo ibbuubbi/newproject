@@ -1,0 +1,14 @@
+---
+- hosts: all
+  remote_user: root
+  became: true
+  tasks:
+  - name: to create users.
+    user: name=jenkins_test12 state=present
+  - group: name=mygroup state=present
+  - name: to install the httpd.
+    yum: name=httpd state=latest
+  - name: to copy the file
+    copy: src=index.html dest=/var/www/html/
+  - name: restart the service.
+    service: name=httpd state=restarted
